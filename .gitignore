@@ -1,0 +1,25 @@
+### Node ###
+# Logs
+logs
+*.log
+npm-debug.log*
+node_modules/
+package-lock.json
+.idea/
+.vscode/
+
+# Coverage directory used by tools like istanbul
+coverage
+# Optional eslint cache
+.eslintcache
+# dotenv environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+
+
+
+
