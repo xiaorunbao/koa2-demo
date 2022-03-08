@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/xiaorunbao/koa2-demo/compare/v0.1.0...v0.1.1) (2022-03-08)
+
+
+### CI
+
+* add auto changelog ([0df4b16](https://github.com/xiaorunbao/koa2-demo/commit/0df4b1699af1fb329d4987cc9076400b258d7165))
+
 ## 0.1.0 (2022-03-08)
 
 
