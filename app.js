@@ -1,28 +1,27 @@
-import Koa from "koa";
-import bodyparser from "koa-bodyparser";
-import json from "koa-json";
-import logger from "koa-logger";
-import onerror from "koa-onerror";
-import KoaStatic from "koa-static";
-import path from "path";
-import cDebug from "debug";
-import index from "./routes/index.js";
+import Koa from 'koa';
+import bodyparser from 'koa-bodyparser';
+import json from 'koa-json';
+import logger from 'koa-logger';
+import onerror from 'koa-onerror';
+import KoaStatic from 'koa-static';
+import path from 'path';
+import index from './routes/index';
+
 const app = new Koa();
 
-const debug = cDebug("demo:server");
 // error handler
 onerror(app);
 
 // middlewares
 app.use(
   bodyparser({
-    enableTypes: ["json", "form", "text"],
+    enableTypes: ['json', 'form', 'text'],
   })
 );
 app.use(json());
 app.use(logger());
 
-app.use(KoaStatic(path.resolve() + "/public"));
+app.use(KoaStatic(`${path.resolve()}/public`));
 
 // logger
 app.use(async (ctx, next) => {
@@ -36,9 +35,8 @@ app.use(async (ctx, next) => {
 app.use(index.routes(), index.allowedMethods());
 
 // error-handling
-app.on("error", (err, ctx) => {
-  console.error("server error", err, ctx);
-  debug("Listening on " + bind);
+app.on('error', (err, ctx) => {
+  console.error('server error', err, ctx);
 });
 
 export default app;
