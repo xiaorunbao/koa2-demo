@@ -1,11 +1,11 @@
 import Koa from 'koa';
 import bodyparser from 'koa-bodyparser';
 import json from 'koa-json';
-import logger from 'koa-logger';
 import onerror from 'koa-onerror';
 import KoaStatic from 'koa-static';
 import path from 'path';
-import index from './routes/index';
+import index from './src/routes/index';
+import logger from './src/util/logs';
 
 const app = new Koa();
 
@@ -19,7 +19,7 @@ app.use(
   })
 );
 app.use(json());
-app.use(logger());
+// app.use(logger());
 
 app.use(KoaStatic(`${path.resolve()}/public`));
 
@@ -37,6 +37,14 @@ app.use(index.routes(), index.allowedMethods());
 // error-handling
 app.on('error', (err, ctx) => {
   console.error('server error', err, ctx);
+  logger.error({
+    err,
+    method: `${ctx.method}`,
+    path: `${ctx.path}`,
+    params: ctx.params,
+    query: ctx.query,
+    body: ctx.request.body,
+  });
 });
 
 export default app;
